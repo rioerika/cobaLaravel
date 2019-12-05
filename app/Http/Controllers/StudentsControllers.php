@@ -85,6 +85,7 @@ class StudentsControllers extends Controller
      */
     public function update(Request $request, Student $student)
     {
+
          $request ->validate ([
             'nama' => 'required',
             'nrp'=> 'required|size:9',
@@ -93,10 +94,10 @@ class StudentsControllers extends Controller
         ]);
 
         Student::where('id',$student->id)->update([
-            'nama' => 'required',
-            'nrp'=> 'required|size:9',
-            'email'=>'required',
-            'jurusan' => 'required'
+            'nama' => $request->nama,
+            'nrp'=> $request->nrp,
+            'email'=>$request->email,
+            'jurusan' => $request->jurusan
         ]);
         return redirect('/students')->with('status', 'data berhasil diubah!');
     }
