@@ -44,12 +44,12 @@ class StudentsControllers extends Controller
 
         // $student -> save();
 
-        // $request ->validate ([
-        //     'nama' => 'required',
-        //     'nrp'=> 'required|size:9',
-        //     'email'=>'required',
-        //     'jurusan' => 'required'
-        // ]);
+        $request ->validate ([
+            'nama' => 'required',
+            'nrp'=> 'required|size:9',
+            'email'=>'required',
+            'jurusan' => 'required'
+        ]);
         student::create($request->all());
         return redirect('/students')->with('status', 'data berhasil ditambahkan!');
     }
@@ -73,7 +73,7 @@ class StudentsControllers extends Controller
      */
     public function edit(Student $student)
     {
-        //
+        return view('students/edit', compact('student'));
     }
 
     /**
@@ -85,7 +85,20 @@ class StudentsControllers extends Controller
      */
     public function update(Request $request, Student $student)
     {
-        //
+         $request ->validate ([
+            'nama' => 'required',
+            'nrp'=> 'required|size:9',
+            'email'=>'required',
+            'jurusan' => 'required'
+        ]);
+
+        Student::where('id',$student->id)->update([
+            'nama' => 'required',
+            'nrp'=> 'required|size:9',
+            'email'=>'required',
+            'jurusan' => 'required'
+        ]);
+        return redirect('/students')->with('status', 'data berhasil diubah!');
     }
 
     /**
@@ -96,6 +109,8 @@ class StudentsControllers extends Controller
      */
     public function destroy(Student $student)
     {
-        //
+        $student::destroy($student->id);
+        return redirect('/students')->with('status', 'data berhasil dihapus!');
+        
     }
 }
