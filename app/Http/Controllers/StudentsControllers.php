@@ -14,7 +14,8 @@ class StudentsControllers extends Controller
      */
     public function index()
     {
-        //
+        $student = student::all();
+        return view('students/index',['students' => $student]);
     }
 
     /**
@@ -24,7 +25,7 @@ class StudentsControllers extends Controller
      */
     public function create()
     {
-        //
+        return view('students/create');
     }
 
     /**
@@ -35,7 +36,14 @@ class StudentsControllers extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request ->validate([
+            'nama' => 'required',
+            'nrp'=> 'required|size:9',
+            'email'=>'required',
+            'jurusan' => 'required'
+        ]);
+        student::create($request->all());
+        return redirect('/students')->with('status', 'Data Berhasil Ditambahkan');
     }
 
     /**
