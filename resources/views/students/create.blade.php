@@ -8,6 +8,7 @@
 			<div class="col-8">
 				<h1 class="mt-3"> From Tambah Data Mahasiswa</h1>
 				<form method="post" action="/students">
+					@csrf
 				  <div class="form-group">
 				    <label for="nama">Nama</label>
 				    <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama" value="{{old('nama')}}" placeholder="Masukan Nama">
@@ -26,7 +27,7 @@
 
 				  <div class="form-group">
 				    <label for="email">Email</label>
-				    <input type="text" class="form-control @error('nama') is-invalid @enderror" id="email" name="email" value="{{old('email')}}" placeholder="Masukan Email">
+				    <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{old('email')}}" placeholder="Masukan Email">
 				    @error('email')
 				    	<div class="invalid-feedback">{{@massage}}</div>
 				    @enderror
@@ -34,7 +35,7 @@
 
 				  <div class="form-group">
 				    <label for="jurusan">jurusan</label>
-				    <input type="text" class="form-control @error('nama') is-invalid @enderror" id="jurusan" name="jurusan" value="old{{('jurusan')}}" placeholder="Masukan jurusan">
+				    <input type="text" class="form-control @error('nama') is-invalid @enderror" id="jurusan" name="jurusan"  value="{{old('jurusan')}}" placeholder="Masukan jurusan">
 				    @error('jurusan')
 				    	<div class="invalid-feedback">{{@massage}}</div>
 				    @enderror
